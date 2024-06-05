@@ -1,0 +1,43 @@
+@font-face {
+  font-family: 'fuente';
+  src: url('../../Media/Picashow.otf');
+}
+.todo{
+font-family: 'fuente';
+border: white 8px outset;
+width: 70%;
+}
+.control{
+  background-color:  #d2ecd2;
+  border: white 4px outset;
+  color: #3a2343;
+}
+
+.circle-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  animation: rotate 4s linear infinite;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+}
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+body {
+  background-color: #f8f9fa;
+}
+.container {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+}
+h2, h4, h5, p {
+  color: #333;
+}

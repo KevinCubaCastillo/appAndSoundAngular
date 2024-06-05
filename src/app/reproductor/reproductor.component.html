@@ -1,0 +1,20 @@
+<div class="container mt-5 todo">
+    <div class="row justify-content-center">
+      <div class="col-md-8 text-center">
+        <h2 class="mb-4">Escuchando ahora...</h2>
+        <img src="{{portada}}" class="circle-image mb-4" alt="Album Cover">
+        <h4 class="mb-3">{{nombre}}</h4>
+        <h5 class="mb-3">Artista: {{autor}}</h5>
+        <p class="mb-4">Album: {{album}}</p>
+        <audio autoplay controls class="mb-4" style="width: 100%;">
+          <source src="{{url}}" type="audio/mp3">
+         Tu dispositivo no soporta este formato
+        </audio>
+        <div class="d-flex justify-content-center">
+          <button class="btn btn-primary control">anterior</button>
+          <button class="btn btn-primary mx-3 control">ME GUSTA!</button>
+          <button class="btn btn-primary control">Siguiente</button>
+        </div>
+      </div>
+    </div>
+  </div>

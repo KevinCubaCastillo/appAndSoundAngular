@@ -1,0 +1,15 @@
+@font-face {
+    font-family: 'CustomFont';
+    src: url('../../../Media/Musicografi.ttf');
+  }
+.logo{
+    align-content: center;
+}
+.buscador{
+    margin: 2%;
+    width: 60%;
+}
+.nombre{
+    font-family: 'CustomFont';
+    font-size: 40px;
+}

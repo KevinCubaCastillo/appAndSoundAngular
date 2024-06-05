@@ -1,0 +1,73 @@
+<div class="todo">
+  <!-- Cabecera del perfil -->
+  <div class="cover-photo"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <!-- Foto de perfil -->
+        <img src="{{fotoPerfil}}" alt="Foto de Perfil" class="profile-pic">
+      </div>
+      <div class="col-md-9">
+        <!-- Detalles del perfil -->
+        <div class="profile-details">
+          <h1>Nombre de Usuario: {{nombre}}</h1>
+          <p>Correo electronico: {{correo}}</p> 
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenido del perfil -->
+  <div class="container">
+    <div class="row mt-4">
+      <div class="col-md-6 ">
+        <!-- Sección de listas de reproducción -->
+        <h2>Listas de Reproducción</h2>
+        <a href="/playlist-list"><button class="btn btn-primary btn-lg btn-create-playlist">Crear Nueva Lista de Reproducción</button> </a> 
+        <!-- Lista de listas de reproducción -->
+        <div class="table-container">
+        <div class=" playlist " *ngFor= "let i of playlists">
+          <div class="playlist-details " >
+            <img src="{{i.canciones[0].imagen}}" alt="Playlist">
+            <div>
+              <h3>{{i.nombre}}</h3>
+            </div>
+            <div>
+              <!-- Botones de editar y eliminar lista de reproducción -->
+              <button class="btn btn-sm btn-info btn-edit-playlist">Reproducir</button>
+              <button class="btn btn-sm btn-info btn-edit-playlist">Ver</button>
+              <button class="btn btn-sm btn-info btn-edit-playlist">Editar</button>
+              <button class="btn btn-sm btn-danger btn-delete-playlist" (click)="deletePlaylist(i)">Eliminar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div class="col-md-6" >
+        <!-- Sección de canciones subidas o cargadas -->
+        <h2>Canciones Subidas</h2>
+        <button class="btn btn-primary btn-lg btn-create-song">Subir Nueva Canción</button>
+        <div class="row table-container" >
+          <div class="col-md-6 " *ngFor="let x of songs">
+            <!-- Canción 1 -->
+            <div class="song-container" >
+              <div class="song">
+                <h3>{{x.nombre}}</h3>
+                <img src="{{x.portada}}" alt="Canción">
+                <p>{{x.autor}}</p>
+                <!-- Botones de editar y eliminar canción -->
+                <div>
+                  <button class="btn btn-sm btn-info btn-edit-song" (click)="play(x)">Reproducir</button>
+                  <button class="btn btn-sm btn-danger btn-delete-song">Eliminar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Agrega más canciones aquí -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

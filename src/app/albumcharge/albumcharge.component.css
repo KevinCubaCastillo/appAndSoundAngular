@@ -1,0 +1,18 @@
+@font-face {
+    font-family: 'CustomFont';
+    src: url('../../Media/Picashow.otf');
+  }
+.todo{
+    font-family: 'CustomFont';
+}
+.crear{
+    background-color: #d2ecd2;
+    border: transparent;
+    color: black;
+    margin-right: 2%;
+}
+.cancelar{
+    background-color: rgb(246, 192, 192);
+    border: transparent;
+    color: black;
+}

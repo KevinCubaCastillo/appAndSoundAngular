@@ -1,0 +1,42 @@
+<div class="mini-player todo">
+  <h5>Escuchando ahora...</h5>
+  <div *ngIf="song" class="song-info d-flex align-items-center">
+    <img src="{{song.portada}}" alt="Portada" class="song-image mr-3" style="max-width: 120px;">
+    <div>
+      <p>{{ song.nombre }}</p>
+      <p>{{ song.album }}</p>
+      <p>{{ song.autor }}</p>
+    </div>
+  </div>
+  <p *ngIf="!song">No hay canción seleccionada</p>
+  <audio id="audioPlayer" autoplay controls class="mb-4" style="width: 100%;" *ngIf="song">
+    <source [src]="song.url" type="audio/mp3">
+    <p *ngIf="!song.url">Tu dispositivo no soporta este formato</p>
+  </audio>
+</div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    // Función para actualizar la posición del mini reproductor cuando la ventana se desplaza
+    $(document).ready(function() {
+      $(window).scroll(function() {
+        var scrollHeight = $(document).height();
+        var scrollPosition = $(window).height() + $(window).scrollTop();
+        var distanceFromBottom = scrollHeight - scrollPosition;
+
+        // Cambia la posición del mini reproductor para mantenerlo en la misma ubicación relativa a la parte inferior de la pantalla
+        if (distanceFromBottom < 150) {
+          $(".mini-player").css({
+            "bottom": (20 + (150 - distanceFromBottom)) + "px"
+          });
+        } else {
+          $(".mini-player").css({
+            "bottom": "20px"
+          });
+        }
+      });
+    });
+  </script>

@@ -1,0 +1,73 @@
+<div class="todo">
+    <div class="container mt-5">
+      <div class="row">
+        <!-- Mitad izquierda con el formulario -->
+        <div class="col-md-6">
+          <h1>Subir Album</h1>
+          <!-- Formulario para crear una nueva playlist -->
+          <form id="playlistForm">
+            <div class="form-group">
+              <label for="playlistName">Nombre del Album</label>
+              <input type="text" class="form-control" name="albumname" id="playlistName" placeholder="Ingresa el nombre del Album" [(ngModel)]="albumName">
+            </div>
+            <div class="form-group">
+              <label for="playlistDescription">Fecha de Lanzamiento</label>
+              <input type="date" class="form-control" name="datealbum" id="playlistDescription" rows="1" placeholder="Ingresa una descripción de la playlist" [(ngModel)]="albumDate">
+            </div>
+              <div class="mb-3">
+                <label for="formFile" class="form-label">Subir Portada</label>
+                <input (change)= "onCoverSelected($event)" class="form-control" type="file" id="formFile">
+              </div>
+
+            <button type="submit" class="btn btn-primary mt-3 crear" (click)= "addVenta()" [disabled]="!uploadCompleted">Crear Album</button>
+            <a href="/Biblioteca-list"><button class="btn btn-primary mt-3 cancelar">Cancelar</button></a>
+          </form>
+        </div>
+        <!-- Mitad derecha con lista de canciones predefinidas -->
+        <div class="col-md-6">
+          <h1>Añadir Canciones</h1>
+          <!-- Formulario para crear una nueva playlist -->
+          <form id="playlistForm">
+            <div class="form-group">
+              <label for="songname">Nombre de la Cancion</label>
+              <input type="text" class="form-control" name="song" id="songname" placeholder="Ingresa el nombre de la canción" [(ngModel)]= "songName">
+            </div>
+            <div class="form-group">
+              <label for="Artista">Artista</label>
+              <input class="form-control" id="Artista" name="artist" rows="1" placeholder="Ingresa del Artista" [(ngModel)]= "artist">
+            </div>
+            <div class="form-group">
+                <label for="fdate">Fecha Lanzamiento</label>
+                <input type="date" class="form-control" id="fdate" name="date" value="{{albumDate}}" placeholder="Fecha carga" [(ngModel)]= "date">
+              </div>
+              <div class="mb-3">
+                <label for="formFile" class="form-label">Subir Canción</label>
+                <input (change)= "onSongSelected($event)" class="form-control" type="file" id="formFile">
+              </div>
+            <button type="submit" class="btn btn-primary mt-3 crear" (click)="addCancion()" [disabled]="!uploadCompletedSong">Añadir</button>
+          </form>
+          <div>
+            <h5>Canciones</h5>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Artista</th>
+                    <th scope="col">Canción</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor= "let x of songs">
+                    <td>{{x.nombre}}</td>
+                    <td>{{x.autor}}</td>
+                    <td>{{x.url}}</td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

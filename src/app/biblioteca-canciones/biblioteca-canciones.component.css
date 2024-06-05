@@ -1,0 +1,111 @@
+@font-face {
+  font-family: 'fuente';
+  src: url('../../Media/Picashow.otf');
+}
+
+.todo{
+font-family: 'fuente';
+}
+.playlist {
+    list-style: none;
+    padding-left: 2%;
+  }
+
+  .playlist-item {
+    margin-bottom: 10px;
+  }
+
+  .playlist-thumbnail {
+    cursor: pointer;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+
+  }
+
+  /* Estilo para el contenido */
+  .content {
+    padding: 20px;
+  }
+
+    /* Estilo para el botón de reproducción */
+    .play-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #d2ecd2;
+      color: #fff;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      background-image: url('https://cdn-icons-png.flaticon.com/512/189/189638.png'); /* Imagen de reproducción */
+      background-size: 70%; /* Tamaño de la imagen */
+      background-repeat: no-repeat; /* Evitar que la imagen se repita */
+      background-position: center; /* Posición de la imagen */
+    }
+    .delete-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #ebc3c3;
+      color: #fff;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      background-image: url('https://cdn-icons-png.freepik.com/512/3807/3807871.png'); 
+      background-size: 70%; /* Tamaño de la imagen */
+      background-repeat: no-repeat; /* Evitar que la imagen se repita */
+      background-position: center; /* Posición de la imagen */
+    }
+    .edit-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #fbe9ad;
+      color: #fff;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      background-image: url('https://cdn-icons-png.flaticon.com/512/8862/8862179.png'); 
+      background-size: 70%; /* Tamaño de la imagen */
+      background-repeat: no-repeat; /* Evitar que la imagen se repita */
+      background-position: center; /* Posición de la imagen */
+    }
+    .like-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #bae0e2;
+      color: #fff;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      background-image: url('https://cdn-icons-png.flaticon.com/512/6572/6572520.png'); 
+      background-size: 70%; /* Tamaño de la imagen */
+      background-repeat: no-repeat; /* Evitar que la imagen se repita */
+      background-position: center; /* Posición de la imagen */
+    }
+    .nombre{
+      align-content: center;
+    }
+
+    .crear{
+      background-color: #d2ecd2;
+      border: transparent;
+      color: black;
+      width: 100%;
+      align-content: center;
+      margin-bottom: 5%;
+    }
+    .d{
+      display: inline-block;
+    }

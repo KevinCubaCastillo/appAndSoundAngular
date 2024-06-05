@@ -1,0 +1,130 @@
+@font-face {
+  font-family: 'fuente';
+  src: url('../../Media/Picashow.otf');
+}
+.todo{
+  font-family: 'fuente';
+}
+ .cover-photo {
+  background-image: url('https://www.mundodeportivo.com/alfabeta/hero/2023/09/ai-hoshino-oshi-no-ko.jpg?width=1200');
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+}
+.table-container {
+  max-height: 650px;
+  overflow-y: auto;
+}
+.profile-pic {
+  border-radius: 50%;
+  border: 5px solid #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  margin-top: -150px;
+  margin-left: 20px;
+  position: relative;
+  z-index: 1;
+  height: 300px;
+  width: 300px;
+}
+
+.profile-details {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-top: -100px;
+  margin-left: 20px;
+  position: relative;
+  z-index: 0;
+}
+
+.profile-details h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.profile-details p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.playlist {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 20px;
+}
+
+.playlist:last-child {
+  border-bottom: none;
+}
+
+.playlist img {
+  max-width: 100px;
+  margin-right: 20px;
+}
+
+.playlist-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.playlist-details h3 {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+
+.playlist-details p {
+  font-size: 1rem;
+  color: #555;
+}
+
+.song-container {
+  margin-bottom: 15px;
+}
+
+.song {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.song img {
+  max-width: 100px;
+  margin-bottom: 10px;
+}
+
+.song h3 {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.song p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 0;
+}
+
+.btn-edit-playlist,
+.btn-delete-playlist,
+.btn-add-song,
+.btn-edit-song,
+.btn-delete-song {
+  width: 100%;
+  font-size: 0.9rem;
+  margin: 3%;
+}
+
+.btn-create-playlist,
+.btn-create-song {
+  margin-top: 3%;
+  margin-bottom: 5%;
+  color: black;
+  border: transparent;
+  background-color: #abc9ab;
+  width: 100%;
+  font-size: 1.2rem;
+  padding: 10px 20px;
+}
