@@ -4,6 +4,7 @@ import { Storage, getDownloadURL, ref, uploadBytesResumable } from '@angular/fir
 import { perfil } from '../Models/perfil';
 import { NgFor } from '@angular/common';
 import { SharedSongsService } from '../shared-songs.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-perfil',
@@ -24,18 +25,20 @@ export class PerfilComponent implements OnInit{
   private _storage : Storage = inject(Storage);
 constructor(
   private _apiService : ApiCancionesService, 
-  private _share : SharedSongsService
+  private _share : SharedSongsService,
+  private _router : Router
   ){
 
 
 }
 ngOnInit(): void {
-  this.nombre = this._apiService.userData.nombrePerfil;
-  this.fotoPerfil = this._apiService.userData.fotoPerfil;
+  //this.nombre = this._apiService.userData.nombrePerfil;
+  //this.fotoPerfil = this._apiService.userData.fotoPerfil;
   this.correo = this._apiService.userData.correo;
   this.idPerfil = this._apiService.userData.idPerfil;
   this.getPlaylists();
   this.getSongs();
+  this.getProfile();
 }
 
 onProfileSelected(event : any){
@@ -86,11 +89,16 @@ getSongs(){
     console.log(x);
   })
 }
+getProfile(){
+  this._apiService.getProfileById(this._apiService.userData.idPerfil).subscribe(x => {
+    this.nombre = x.data[0].nombrePerfil;
+    this.fotoPerfil = x.data[0].fotoPerfil
+  })
+}
 play(song: any){
   this._share.setSong(song);
 }
 deletePlaylist(pl: any){
-  let text;
 if(confirm("¿Esta seguro de eliminar " + pl.nombre + '?') == true) {
   this._apiService.deletePlaylist(pl.id).subscribe(x =>{
     if(x.success === true){
@@ -99,5 +107,20 @@ if(confirm("¿Esta seguro de eliminar " + pl.nombre + '?') == true) {
     }
   })
 }
+}
+data(data: any){
+  this._share.setData(data);
+  this._router.navigate(['/view']);
+}
+
+disablePlaylist(pl: any){
+  if(confirm("¿Esta seguro de archivar " + pl.nombre + '?') == true) {
+    this._apiService.disablePlaylist(pl.id).subscribe(x =>{
+      if(x.success === true){
+        alert(x.message);
+        window.location.reload();
+      }
+    })
+  }
 }
 }

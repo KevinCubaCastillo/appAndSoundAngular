@@ -1,0 +1,21 @@
+<h1>{{data.nombre}}</h1>
+<h1>{{username}}</h1>
+
+<img src="{{data.canciones[0].imagen}}" alt=""class="img-thumbnail">
+<table class="table table-bordered" >
+    <thead>
+      <tr>
+        <th scope="col">Nombre Canción</th>
+        <th scope="col">Artista</th>
+        <th scope="col">Album</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let i of data.canciones">
+      <tr>
+        <td>{{i.nombre}}</td>
+        <td>{{i.artista}}</td>
+        <td>{{i.album}}</td>
+      </tr>
+
+    </tbody>
+  </table>

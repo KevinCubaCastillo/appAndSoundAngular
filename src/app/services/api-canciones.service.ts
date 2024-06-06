@@ -55,8 +55,11 @@ export class ApiCancionesService {
   addAlbumSong(album : album):Observable<Response>{
     return this._http.post<Response>(this.url + 'Canciones/addAlbumSong', album, httpOptions)
   }
+  getProfileById(id: number):Observable<Response>{
+    return this._http.get<Response>(this.url + 'Perfil/profileById/'+ id)
+  }
   updateProfile(id:number, perfil : perfil):Observable<Response>{
-    return this._http.put<Response>(this.url + 'Perfil/updateProfile/' + id, perfil ,httpOptions)
+    return this._http.patch<Response>(this.url + 'Perfil/updateProfile/' + id, perfil ,httpOptions)
   }
   getPlaylistsActive():Observable<Response>{
     return this._http.get<Response>(this.url2 + 'listas/getAllListsActive')
@@ -66,6 +69,9 @@ export class ApiCancionesService {
   }
   addPlaylist(pl : playlist):Observable<Response>{
     return this._http.post<Response>(this.url2 + 'listas/addListWithSong', pl, httpOptions);
+  }
+  disablePlaylist(id: string):Observable<Response>{
+    return this._http.patch<Response>(this.url2 + 'listas/deactivatePlaylist/' + id, httpOptions);
   }
   deletePlaylist(id: string):Observable<Response>{
     return this._http.delete<Response>(this.url2 + 'listas/deletePlaylist/' + id);

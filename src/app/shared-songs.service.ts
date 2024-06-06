@@ -7,6 +7,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 export class SharedSongsService {
   private _data : any;
   songPlay = new BehaviorSubject<any>(null);
+  dataView = new BehaviorSubject<any>(null);
 
   get datos(){
     return this._data;
@@ -14,12 +15,18 @@ export class SharedSongsService {
   get getSong(){
     return this.songPlay.asObservable();
     }
+  get getData(){
+    return this.dataView.asObservable();
+  }
   agregarDato(data : any){
     this._data = data;
   }
   setSong(song : any){
    this.songPlay.next(song);
   } 
+  setData (data: any){
+    this.dataView.next(data);
+  }
   constructor() { }
 }
 

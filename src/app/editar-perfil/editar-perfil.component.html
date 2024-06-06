@@ -1,0 +1,39 @@
+<body class="todo">
+    <div class="container mt-5">
+      <div class="row">
+        <!-- Mitad izquierda con el formulario -->
+        <div class="col-md-6">
+          <h1>Editar Perfil</h1>
+          <!-- Formulario para crear una nueva playlist -->
+          <form id="playlistForm">
+            <div class="form-group profile-section">
+                <label for="profilePic">Foto de perfil</label>
+                <div class="profile-container">
+                    <img [src]="profilePic || defaultProfilePic" alt="Foto de Perfil" class="profile-pic">
+                    <div class="upload-container">
+                        <input type="file" (change)= "onCoverSelected($event)" class="form-control" type="file" id="formFile">
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3 crear" (click)= "updateProfile()" [disabled]="!uploadCompleted">Confirmar</button>
+
+            
+          </form>
+        </div>      
+        <div class="col-md-6">
+            <h1>Editar Perfil</h1>
+            <!-- Formulario para crear una nueva playlist -->
+            <form id="playlistForm">
+              <div class="form-group">
+                  <label for="username">Nombre de Usuario</label>
+                  <input type="text" class="form-control" id="username" name="username" placeholder="Username" [value]="username" [(ngModel)]="username">
+              </div>
+              <br>
+              <button  class="btn btn-primary mt-3 crear" (click)= "uptadeUsername()">Actualizar nombre de usuario</button>
+              <a href="/Biblioteca-list"><button class="btn btn-primary mt-3 cancelar">Cancelar</button></a>
+            </form>
+          </div>          
+      </div>
+    </div>
+  </body>
+  

@@ -1,0 +1,46 @@
+@font-face {
+    font-family: 'CustomFont';
+    src: url('../../Media/Picashow.otf');
+  }
+.todo{
+    font-family: 'CustomFont';
+}
+.crear{
+    background-color: #d2ecd2;
+    border: transparent;
+    color: black;
+    margin-right: 2%;
+}
+.cancelar{
+    background-color: rgb(246, 192, 192);
+    border: transparent;
+    color: black;
+}
+.table-container {
+    max-height: 350px;
+    overflow-y: auto;
+  }
+
+  .profile-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.profile-pic {
+    border-radius: 50%;
+    border: 5px solid #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    height: 150px;  /* Ajusta el tamaño según sea necesario */
+    width: 150px;   /* Ajusta el tamaño según sea necesario */
+}
+
+.upload-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espacio entre el campo de carga y el input de texto */
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
