@@ -1,11 +1,8 @@
   <nav class="navbar bg-body-tertiary" aria-label="Light offcanvas navbar">
     <div class="container-fluid">
        
-      <a class="navbar-brand nombre" href="#">AndinoSound</a>
-      <form class="d-flex mt-3 buscador" role="search">
-        <input class="form-control me-2 busca" type="search" placeholder="Buscar" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Ir</button>
-      </form>
+      <a class="navbar-brand nombre" routerLink="/Inicio-list">AndinoSound</a>
+
       <button class="navbar-toggler" [disabled]="!UserLoginOn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarLight" aria-controls="offcanvasNavbarLight" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -24,31 +21,31 @@
                 <img width="150px" src="{{fotoPerfil}}" alt="Logo">
             </div>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/Inicio-list">Inicio</a>
+              <a class="nav-link" aria-current="page" routerLink="/Inicio-list">Inicio</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" routerLink="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Ingresar
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a ngIf="UserLoginOn" class="dropdown-item" href="/Login-list">Iniciar sesion</a></li>
-                  <li><a ngIf="UserLoginOn" class="dropdown-item" href="/perfil-list">Ver perfil</a></li>
+                  <li><a ngIf="UserLoginOn" class="dropdown-item" routerLink="/Login-list">Iniciar sesion</a></li>
+                  <li><a ngIf="UserLoginOn" class="dropdown-item" routerLink="/perfil-list">Ver perfil</a></li>
                   <li>
                     <hr class="dropdown-divider">
                   </li>
                 </ul>
               </li>
             <li class="nav-item">
-              <a class="nav-link" href="/explorar-novedades-list">Explorar</a>
+              <a class="nav-link" routerLink="/explorar-novedades-list">Explorar</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/Biblioteca-list">Tu biblioteca</a>
+                <a class="nav-link" routerLink="/Biblioteca-list">Tu biblioteca</a>
             </li>
             <li class="nav-item">
                 <a (click)="logout()" class="nav-link">Cerrar sesion</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Ayuda</a>
+                <a class="nav-link" routerLink="/Inicio-list">Ayuda</a>
             </li>
            
           </ul>

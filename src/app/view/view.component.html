@@ -1,7 +1,5 @@
 <h1>{{data.nombre}}</h1>
 <h1>{{username}}</h1>
-
-<img src="{{data.canciones[0].imagen}}" alt=""class="img-thumbnail">
 <table class="table table-bordered" >
     <thead>
       <tr>
@@ -15,6 +13,9 @@
         <td>{{i.nombre}}</td>
         <td>{{i.artista}}</td>
         <td>{{i.album}}</td>
+        <td>
+          <button class="btn btn-sm btn-info btn-delete-playlist" >Reproducir</button> <br> <button class="btn btn-sm btn-danger btn-delete-playlist" >Eliminar</button>
+        </td>
       </tr>
 
     </tbody>

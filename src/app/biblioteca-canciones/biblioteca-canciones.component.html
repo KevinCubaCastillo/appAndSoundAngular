@@ -11,8 +11,8 @@
         <button class="play-btn" style="width: 70px; height: 70px;" (click)="mostrarMeGusta()" ></button>
       </li>
       <h2 class="text-center mt-3">Listas de albumes</h2>
-      <a href="/subir-contenido"><button class="btn btn-primary crear">Crear Nuevo album</button></a>
-      <a href="/playlist-list"><button class="btn btn-primary crear">Crear Nueva Lista de reproducción</button></a>
+      <a routerLink="/subir-contenido"><button class="btn btn-primary crear" >Crear Nuevo album</button></a>
+      <a routerLink="/playlist-list"><button class="btn btn-primary crear">Crear Nueva Lista de reproducción</button></a>
       <input type="text" class="form-control mb-3" placeholder="Buscar Album..." [(ngModel)]="filtroAlbum" (input)="filtrarAlbumes()">
       <div class="row">
       <div class="playlist" *ngFor= "let i of albumesFiltrados" class="col-md-4 mb-4">

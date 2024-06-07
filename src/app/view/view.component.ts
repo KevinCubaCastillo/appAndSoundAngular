@@ -19,7 +19,7 @@ constructor(private _shared: SharedSongsService, private _router : Router, priva
   this._shared.getData.subscribe({
     next: x =>{
       this.data = x;
-      console.log('Datos' + this.data);
+      console.log(this.data);
     }
   })
   if(this.data === null){

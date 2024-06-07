@@ -9,7 +9,6 @@
           <div class="form-group">
             <label for="playlistName">Nombre de la Playlist</label>
             <input type="text" class="form-control" id="playlistName" name="playlistName" placeholder="Ingresa el nombre de la playlist" [(ngModel)]="nombre">
-            {{nombre}}
           </div>
           <br>
           <div class="form-group form-check">
@@ -40,7 +39,7 @@
             </div>
           </div>
           <button  class="btn btn-primary mt-3 crear" (click)="addPlayList()">Crear Playlist</button>
-          <a href="/Biblioteca-list"><button class="btn btn-primary mt-3 cancelar">Cancelar</button></a>
+          <a><button class="btn btn-primary mt-3 cancelar" (click)="goBack()">Cancelar</button></a>
         </form>
       </div>
       <!-- Mitad derecha con lista de canciones predefinidas -->

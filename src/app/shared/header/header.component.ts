@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiCancionesService } from '../../services/api-canciones.service';
-import { Route, Router } from '@angular/router';
+import { Route, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 

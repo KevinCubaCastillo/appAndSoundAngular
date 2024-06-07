@@ -4,18 +4,21 @@ import { Storage, getDownloadURL, ref, uploadBytesResumable } from '@angular/fir
 import { perfil } from '../Models/perfil';
 import { NgFor } from '@angular/common';
 import { SharedSongsService } from '../shared-songs.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { stats } from '../Models/stats';
 
 @Component({
   selector: 'app-perfil',
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, RouterLink],
   templateUrl: './perfil.component.html',
   styleUrl: './perfil.component.css'
 })
 export class PerfilComponent implements OnInit{
   idPerfil: number = 0;
   idUsuario : number = 0;
+  fecha : string = '';
+  stats : stats = {fechaReproduccion: this.fecha, idCancion: 0, idUsuario: 0}
   nombre: string = '';
   fotoPerfil: string = '';
   correo: string = '';
@@ -39,6 +42,8 @@ ngOnInit(): void {
   this.getPlaylists();
   this.getSongs();
   this.getProfile();
+  const ahora = new Date();
+  this.fecha = ahora.toLocaleString(); // O cualquier formato que prefieras
 }
 
 onProfileSelected(event : any){
@@ -97,6 +102,14 @@ getProfile(){
 }
 play(song: any){
   this._share.setSong(song);
+  this.stats.idCancion = song.idCancion;
+  this.stats.idUsuario = this._apiService.userData.idUsuario;
+  this.stats.fechaReproduccion = this.fecha;
+  this._apiService.addStats(this.stats).subscribe(x => {
+    if(x.success === true){
+      console.log(x);
+    }
+  })
 }
 deletePlaylist(pl: any){
 if(confirm("¿Esta seguro de eliminar " + pl.nombre + '?') == true) {
@@ -112,7 +125,9 @@ data(data: any){
   this._share.setData(data);
   this._router.navigate(['/view']);
 }
-
+setQueue(queue: any){
+  this._share.setSongs(queue.canciones);
+}
 disablePlaylist(pl: any){
   if(confirm("¿Esta seguro de archivar " + pl.nombre + '?') == true) {
     this._apiService.disablePlaylist(pl.id).subscribe(x =>{

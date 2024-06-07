@@ -7,6 +7,7 @@ import { album } from '../Models/album';
 import { userLogin } from '../Models/userLogin';
 import { perfil } from '../Models/perfil';
 import { playlist } from '../Models/playlist';
+import { stats } from '../Models/stats';
 
 const httpOptions = {
   headers : new HttpHeaders({
@@ -75,6 +76,12 @@ export class ApiCancionesService {
   }
   deletePlaylist(id: string):Observable<Response>{
     return this._http.delete<Response>(this.url2 + 'listas/deletePlaylist/' + id);
+  }
+  addStats(stat : stats):Observable<Response>{
+    return this._http.post<Response>(this.url + 'Stats/addReproduccion' , stat, httpOptions)
+  }
+  getStats(id: number):Observable<Response>{
+    return this._http.get<Response>(this.url + 'Stats/countBySong/' + id)
   }
   login(user: usuario):Observable<Response>{
     return this._http.post<Response>(this.url + 'login/login', user, httpOptions).pipe(

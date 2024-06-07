@@ -2,16 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { ApiCancionesService } from '../services/api-canciones.service';
 import { album } from '../Models/album';
 import { FormsModule } from '@angular/forms';
-import { NgFor } from '@angular/common';
+import { Location, NgFor } from '@angular/common';
 import { pCanciones } from '../Models/pCanciones';
 import { url } from 'inspector';
 import { playlist } from '../Models/playlist';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-crear-playlist',
   standalone: true,
-  imports: [FormsModule,NgFor],
+  imports: [FormsModule,NgFor, RouterLink],
   templateUrl: './crear-playlist.component.html',
   styleUrl: './crear-playlist.component.css'
 })
@@ -27,7 +27,8 @@ export class CrearPlaylistComponent implements OnInit{
   cancionesFiltradas: any[] = [];
   constructor(
     private _apiService: ApiCancionesService,
-    private _router: Router
+    private _router: Router,
+    private location: Location
   ){
     this.canciones = [];
     this.playlist = {nombre: '', id_usuario : '', publico: false, canciones: []}
@@ -36,6 +37,8 @@ export class CrearPlaylistComponent implements OnInit{
     this.getSongs();
     this.getPlaylists();
     this.cancionesFiltradas = this.lst;
+    const ahora = new Date();
+    this.fecha = ahora.toLocaleString(); // O cualquier formato que prefieras
   }
   addCancion(cancion : any){
     const nuevaCancion: pCanciones = {
@@ -88,5 +91,8 @@ getPlaylists(){
     this.lst2 = x.data;
     console.log(x);
   })
+}
+goBack(): void {
+  this.location.back();
 }
   }
