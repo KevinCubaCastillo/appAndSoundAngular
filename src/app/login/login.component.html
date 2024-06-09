@@ -13,11 +13,11 @@
                                     <div class="section text-center">
                                         <h4 class="mb-4 pb-3">Iniciar sesion</h4>
                                         <div class="form-group">
-                                            <input type="email" name="logemail" class="form-style" placeholder="Email" id="logemail" autocomplete="off" [(ngModel)]="loginEmail">
+                                            <input type="email" name="logemail" class="form-style" placeholder="Email" id="logemail" autocomplete="off" [(ngModel)]="loginEmail" required>
                                             <i class="input-icon uil uil-at"></i>
                                         </div>	
                                         <div class="form-group mt-2">
-                                            <input type="password" name="logpass" class="form-style" placeholder="Contraseña" id="logpass" autocomplete="off" [(ngModel)]="loginPassword">
+                                            <input type="password" name="logpass" class="form-style" placeholder="Contraseña" id="logpass" autocomplete="off" [(ngModel)]="loginPassword" required>
                                             <i class="input-icon uil uil-lock-alt"></i>
                                         </div>
                                         <button (click)="login()" class="btn mt-4">Enviar</button>

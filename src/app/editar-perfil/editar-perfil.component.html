@@ -26,7 +26,7 @@
             <form id="playlistForm">
               <div class="form-group">
                   <label for="username">Nombre de Usuario</label>
-                  <input type="text" class="form-control" id="username" name="username" placeholder="Username" [value]="username" [(ngModel)]="username">
+                  <input type="text" class="form-control" id="username" name="username" placeholder="Username" [value]="username" [(ngModel)]="username" required>
               </div>
               <br>
               <button  class="btn btn-primary mt-3 crear" (click)= "uptadeUsername()">Actualizar nombre de usuario</button>
