@@ -8,13 +8,79 @@ border: white 8px outset;
 width: 80%;
 }
 .mini-player {
+  background-color: #f0f2f4;
+  color: black;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+  padding: 10px 20px;
+  border-top-style: solid;
+  border-width: 5px;
+  border-color: #abc8aa;
+}
+
+.mini-player.fixed-bottom {
   position: fixed;
-  bottom: 20px; /* Distancia desde la parte inferior de la pantalla */
-  right: 20px; /* Distancia desde el lado derecho de la pantalla */
-  width: 350px;
-  background-color: #f8f9fa;
-  border: 1px solid #ccc;
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.player-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.song-info {
+  display: flex;
+  align-items: center;
+  max-width: 40%;
+}
+
+.song-image {
+  width: 80px; /* Imagen más grande */
+  height: 80px;
+  margin-right: 15px;
+  border-radius: 4px;
+}
+
+.song-title {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.song-artist {
+  font-size: 0.875rem;
+}
+
+.audio-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70%; /* Ajusta el ancho según sea necesario */
+}
+
+.audio-player {
+  width: 100%; /* Ajustar el ancho del reproductor de audio */
+  margin-bottom: 0;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 10px;
+  margin-left: 20px; /* Espacio entre el audio player y los botones */
+}
+
+.controls .btn {
+  background-color: #abc8aa;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+}
+
+.controls .btn:hover {
+  background-color: #2d3748;
 }

@@ -60,44 +60,6 @@
       </div>
 </div>
 
-  <div class="header">
-    <h1>Explorar Música</h1>
-  </div>
-  <!-- Contenido -->
-  <div class="container mt-4">
-    <div class="row">
-      <div class="col-md-4 mb-4">
-        <div class="card">
-          <img src="https://via.placeholder.com/300" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Lista de Éxitos</h5>
-            <p class="card-text">Las canciones más populares del momento.</p>
-            <a href="#" class="btn btn-success">Explorar</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 mb-4">
-        <div class="card">
-          <img src="https://via.placeholder.com/300" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Descubrimiento Semanal</h5>
-            <p class="card-text">Nuevas canciones recomendadas solo para ti.</p>
-            <a href="#" class="btn btn-success">Explorar</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 mb-4">
-        <div class="card">
-          <img src="https://via.placeholder.com/300" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Géneros Populares</h5>
-            <p class="card-text">Explora música por géneros.</p>
-            <a href="#" class="btn btn-success">Explorar</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <div class="container mt-5">
     <!-- Botones para seleccionar el número de resultados a mostrar -->
@@ -114,6 +76,7 @@
             <button class="btn btn-primary mx-2" (click)="setResultsLimit(50)">Top 50</button>
         </div>
     
+        <div class="table-container">
             <table class="table table-bordered table-striped text-center">
                 <thead class="thead-dark">
                     <tr>
@@ -132,11 +95,13 @@
                     </tr>
                 </tbody>
             </table>
+          </div>
         </div>
 
         <!-- Segunda Tabla -->
         <div class="col-md-6">
           <h1>Canciones Reproducidas Recientemente</h1>
+          <div class="table-container">
             <table class="table table-bordered table-striped text-center">
                 <thead class="thead-dark">
                     <tr>
@@ -153,6 +118,7 @@
                     </tr>
                 </tbody>
             </table>
+          </div>
         </div>
     </div>
 </div>

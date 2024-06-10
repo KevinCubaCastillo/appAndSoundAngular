@@ -5,6 +5,10 @@
 .todo{
   font-family: 'fuente';
 }
+.table-container {
+  max-height: 750px;
+  overflow-y: auto;
+}
  .header {
     background-color: #abc9ab;
 

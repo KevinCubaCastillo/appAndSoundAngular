@@ -1,26 +1,27 @@
-<div class="mini-player todo">
-  <h5>Escuchando ahora...</h5>
-  <div *ngIf="song" class="song-info d-flex align-items-center">
-    <img [src]="songImage" alt="Portada" class="song-image mr-3" style="max-width: 120px;">
-    <div>
-      <p>{{ song.nombre }}</p>
-      <p>{{ song.album }}</p>
-      <p>{{ song.autor }}</p>
+<div class="mini-player fixed-bottom">
+  <div class="player-container d-flex align-items-center justify-content-between">
+    <div *ngIf="song" class="song-info d-flex align-items-center">
+      <img [src]="songImage" alt="Portada" class="song-image mr-3">
+      <div>
+        <p class="song-title">{{ song.nombre }}</p>
+        <p class="song-artist">{{ song.autor }}</p>
+      </div>
     </div>
-  </div>
-  <p *ngIf="!song">No hay canción seleccionada</p>
-  
-  <audio id="audioPlayer" autoplay controls class="mb-4" style="width: 100%;" *ngIf="song" (ended)="onAudioEnded($event)">
-    <source [src]="song.url" type="audio/mp3">
-    <p *ngIf="!song.url">Tu dispositivo no soporta este formato</p>
-  </audio>
+    <p *ngIf="!song">No hay canción seleccionada</p>
 
-  <div class="controls">
-    <button (click)="previousSong()" class="btn btn-secondary">Anterior</button>
-    <button (click)="toggleRepeat()" class="btn btn-secondary">
-      {{ isRepeat ? 'Desactivar Repetición' : 'Activar Repetición' }}
-    </button>
-    <button (click)="nextSong()" class="btn btn-secondary">Siguiente</button>
+    <div class="audio-controls d-flex align-items-center">
+      <audio id="audioPlayer" autoplay controls class="audio-player" *ngIf="song" (ended)="onAudioEnded($event)">
+        <source [src]="song.url" type="audio/mp3">
+        <p *ngIf="!song.url">Tu dispositivo no soporta este formato</p>
+      </audio>
+      <div class="controls d-flex align-items-center">
+        <button (click)="previousSong()" class="btn btn-secondary">Anterior</button>
+        <button (click)="toggleRepeat()" class="btn btn-secondary">
+          {{ isRepeat ? 'Desactivar Repetición' : 'Activar Repetición' }}
+        </button>
+        <button (click)="nextSong()" class="btn btn-secondary">Siguiente</button>
+      </div>
+    </div>
   </div>
 </div>
 
