@@ -17,6 +17,6 @@
     color: black;
 }
 .table-container {
-    max-height: 350px;
+    max-height: 650px;
     overflow-y: auto;
   }

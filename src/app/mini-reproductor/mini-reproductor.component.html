@@ -1,7 +1,7 @@
 <div class="mini-player todo">
   <h5>Escuchando ahora...</h5>
   <div *ngIf="song" class="song-info d-flex align-items-center">
-    <img [src]="song.portada" alt="Portada" class="song-image mr-3" style="max-width: 120px;">
+    <img [src]="songImage" alt="Portada" class="song-image mr-3" style="max-width: 120px;">
     <div>
       <p>{{ song.nombre }}</p>
       <p>{{ song.album }}</p>
@@ -15,12 +15,11 @@
     <p *ngIf="!song.url">Tu dispositivo no soporta este formato</p>
   </audio>
 
-  <button (click)="toggleRepeat()" class="btn btn-secondary">
-    {{ isRepeat ? 'Desactivar Repetición' : 'Activar Repetición' }}
-  </button>
-
   <div class="controls">
     <button (click)="previousSong()" class="btn btn-secondary">Anterior</button>
+    <button (click)="toggleRepeat()" class="btn btn-secondary">
+      {{ isRepeat ? 'Desactivar Repetición' : 'Activar Repetición' }}
+    </button>
     <button (click)="nextSong()" class="btn btn-secondary">Siguiente</button>
   </div>
 </div>

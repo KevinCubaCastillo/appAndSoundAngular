@@ -3,6 +3,7 @@ import { SharedSongsService } from '../shared-songs.service';
 import { NgFor, NgIf } from '@angular/common';
 import { stats } from '../Models/stats';
 import { ApiCancionesService } from '../services/api-canciones.service';
+import { ApiAuthService } from '../services/api-auth.service';
 
 @Component({
   selector: 'app-mini-reproductor',
@@ -22,20 +23,16 @@ export class MiniReproductorComponent {
   autor: string = '';
   album: string = '';
   isRepeat: boolean = false;
+  songImage: string = '';
 
-  constructor (private _share: SharedSongsService, private _apiService: ApiCancionesService){
+  constructor (private _share: SharedSongsService, private _apiService: ApiCancionesService, private _apiAuth: ApiAuthService){
     this._share.getSong.subscribe({
-      next: x =>{
+      next: x => {
         this.song = x;
+        this.songImage = this.getSongImage(x);
         this.updateAudio();
       }
-    })
-    /*this._share.getSongQueue.subscribe({
-      next: index => {
-        this.songQueue = this._share.getCurrentSong();
-        this.updateAudio();
-      }
-    });*/
+    });
   }
   toggleRepeat(): void {
     this.isRepeat = !this.isRepeat;
@@ -45,19 +42,34 @@ export class MiniReproductorComponent {
       const audioPlayer = event.target;
       audioPlayer.play();
       this.addStats();
+      console.log(this.stats)
+    }else{
+      this.nextSong();
     }
+    
   }
   updateAudio(): void {
     const audioPlayer = document.getElementById('audioPlayer') as HTMLAudioElement;
     if (audioPlayer) {
       audioPlayer.load();
+      this.addStats();
+      console.log(this.stats)
+
     }
+  }
+  nextSong(): void {
+    this._share.nextSong();
+  }
+
+  previousSong(): void {
+    this._share.previousSong();
+
   }
   addStats(){
   const ahora = new Date();
   this.fecha = ahora.toLocaleString(); // O cualquier formato que prefieras
-  this.stats.idCancion = this.song.idCancion;
-  this.stats.idUsuario = this._apiService.userData.idUsuario;
+  this.stats.idCancion = this.getSongId(this.song);
+  this.stats.idUsuario = this._apiAuth.userData!.idUsuario;
   this.stats.fechaReproduccion = this.fecha;
   this._apiService.addStats(this.stats).subscribe(x => {
     if(x.success === true){
@@ -65,29 +77,10 @@ export class MiniReproductorComponent {
     }
   })
   }
-
-  nextSong(): void {
-    this._share.nextSong();
+  getSongImage(song: any): string {
+    return song.portada || song.imagen || '';
   }
-
-  previousSong(): void {
-    this._share.previousSong();
+  getSongId(song: any): number {
+    return song.idCancion || song.id || 0;
   }
-/*
-<div class="mini-player todo">
-  <h5>Escuchando ahora...</h5>
-  <div *ngIf="song" class="song-info d-flex align-items-center">
-    <img src="{{song.portada}}" alt="Portada" class="song-image mr-3" style="max-width: 120px;">
-    <div>
-      <p>{{ song.nombre }}</p>
-      <p>{{ song.album }}</p>
-      <p>{{ song.autor }}</p>
-    </div>
-  </div>
-  <p *ngIf="!song">No hay canción seleccionada</p>
-  <audio id="audioPlayer" autoplay controls class="mb-4" style="width: 100%;" *ngIf="song">
-    <source [src]="song.url" type="audio/mp3">
-    <p *ngIf="!song.url">Tu dispositivo no soporta este formato</p>
-  </audio>
-</div>*/
 }

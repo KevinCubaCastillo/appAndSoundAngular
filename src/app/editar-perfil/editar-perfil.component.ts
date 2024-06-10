@@ -4,11 +4,13 @@ import { Observable } from 'rxjs';
 import { Storage, getDownloadURL, ref, uploadBytesResumable } from '@angular/fire/storage';
 import { perfil } from '../Models/perfil';
 import { FormsModule } from '@angular/forms';
+import { ApiAuthService } from '../services/api-auth.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-editar-perfil',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './editar-perfil.component.html',
   styleUrl: './editar-perfil.component.css'
 })
@@ -24,7 +26,8 @@ export class EditarPerfilComponent implements OnInit{
   defaultProfilePic: string = 'https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o='; // Cambia esto a la ruta de tu imagen por defecto
 
 constructor(
-  private _apiService: ApiCancionesService
+  private _apiService: ApiCancionesService,
+  private _apiAuth: ApiAuthService
 ){
   this.profile = {nombrePerfil: this.username, fotoPerfil: this.profilePic}
 }
@@ -58,11 +61,11 @@ async uploadCover (file: File){
 ngOnInit(): void {
   //this.username = this._apiService.userData.nombrePerfil;
   //this.profilePic = this._apiService.userData.fotoPerfil;
-  this.idProfile = this._apiService.userData.idPerfil;
+  this.idProfile = this._apiAuth.userData!.idPerfil;
   this.getProfile();
 }
 getProfile(){
-  this._apiService.getProfileById(this._apiService.userData.idPerfil).subscribe(x =>{
+  this._apiService.getProfileById(this._apiAuth.userData!.idPerfil).subscribe(x =>{
     this.username = x.data[0].nombrePerfil;
     this.profilePic = x.data[0].fotoPerfil;
   })

@@ -9,7 +9,7 @@
 </style>
 <div class="todo">
 <div class="header">
-    <h1>Ranking 3 autores mas escuchados esta semana</h1>
+    <h1>Ranking 3 canciones mas escuchadas</h1>
   </div>
 <div class="container-lg my-3">
     <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -21,24 +21,43 @@
         </ol>
         
         <!-- Wrapper for carousel items -->
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="https://akamai.sscdn.co/uploadfile/letras/fotos/b/7/3/0/b730657b8f7e675eac1620456b98ee1b.jpg" class="d-block w-100" alt="Slide 1">
-            </div>
-            <div class="carousel-item">
-                <img src="https://perufolkradio.com/wp-content/uploads/2023/06/kjarkas-libre.jpg" class="d-block w-100" alt="Slide 2">
-            </div>
-            <div class="carousel-item">
-                <img src="https://i.pinimg.com/originals/f0/b2/da/f0b2da620028944c77b2c8e3d291f3a1.jpg" class="d-block w-100" alt="Slide 3">
-            </div>
-        </div>
-        <a class="carousel-control-prev" href="#myCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-        </a>
-        <a class="carousel-control-next" href="#myCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
-        </a>
-    </div>
+        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+              <div class="carousel-item active">
+                  <div class="d-flex align-items-center">
+                      <img src="{{lst[0].portada}}" class="img-fluid custom-img" alt="Slide 1">
+                      <div class="ms-3">
+                          <h1>1. {{lst[0].nombre}}</h1>
+                          <h1>{{lst[0].autor}}</h1>
+                      </div>
+                  </div>
+              </div>
+              <div class="carousel-item">
+                  <div class="d-flex align-items-center">
+                      <img src="{{lst[1].portada}}" class="img-fluid custom-img" alt="Slide 2">
+                      <div class="ms-3">
+                          <h1>2. {{lst[1].nombre}}</h1>
+                          <h1>{{lst[1].autor}}</h1>
+                      </div>
+                  </div>
+              </div>
+              <div class="carousel-item">
+                  <div class="d-flex align-items-center">
+                      <img src="{{lst[2].portada}}" class="img-fluid custom-img" alt="Slide 3">
+                      <div class="ms-3">
+                          <h1>3. {{lst[2].nombre}}</h1>
+                          <h1>{{lst[2].autor}}</h1>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <a class="carousel-control-prev" href="#myCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon custom-icon"></span>
+          </a>
+          <a class="carousel-control-next" href="#myCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon custom-icon"></span>
+          </a>
+      </div>
 </div>
 
   <div class="header">
@@ -80,77 +99,60 @@
     </div>
   </div>
 
-  <div class="container mt-4">
-    <!-- Descripción e Imagen -->
-    <div class="row mb-4">
-      <!-- Descripción -->
-      <div class="col-md-6">
-        <div class="description-container">
-          <h2>¿Sabias que...?</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Integer aliquet lacinia nulla, nec viverra orci fringilla id. Proin pulvinar, ligula eget hendrerit consequat, libero quam mattis velit, in ultricies velit lectus sit amet libero. Quisque auctor dui id mi faucibus, vel congue turpis eleifend. Integer nec eros at arcu tempus ullamcorper. Fusce ultrices velit eu dui tristique ultrices. Sed eleifend consequat enim. Integer ut mi sed orci ullamcorper volutpat. Aenean id metus hendrerit, dignissim enim sit amet, auctor mi.</p>
+  <div class="container mt-5">
+    <!-- Botones para seleccionar el número de resultados a mostrar -->
+
+    <!-- Tablas en paralelo -->
+    <div class="row">
+        <!-- Primera Tabla -->
+        <h1>Top Canciones</h1>
+
+        <div class="col-md-6">
+          <div class="text-center mb-4">
+            <button class="btn btn-primary mx-2" (click)="setResultsLimit(10)">Top 10</button>
+            <button class="btn btn-primary mx-2" (click)="setResultsLimit(30)">Top 30</button>
+            <button class="btn btn-primary mx-2" (click)="setResultsLimit(50)">Top 50</button>
         </div>
-      </div>
-      <!-- Imagen -->
-      <div class="col-md-6">
-        <div class="image-container">
-          <img src="https://via.placeholder.com/800x600" class="img-fluid" alt="...">
+    
+            <table class="table table-bordered table-striped text-center">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Imagen</th>
+                        <th>Nombre</th>
+                        <th>Autor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of lst; let i = index" [hidden]="i >= resultsLimit">
+                        <td>{{ i + 1 }}</td>
+                        <td><img [src]="item.portada" class="img-fluid table-img" alt="Imagen"></td>
+                        <td>{{ item.nombre }}</td>
+                        <td>{{ item.autor }}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-      </div>
+
+        <!-- Segunda Tabla -->
+        <div class="col-md-6">
+          <h1>Canciones Reproducidas Recientemente</h1>
+            <table class="table table-bordered table-striped text-center">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Autor</th>
+                        <th>Fecha de Reproducción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of lst2; let i = index" [hidden]="i >= 15">
+                        <td>{{ item.nombre }}</td>
+                        <td>{{ item.autor }}</td>
+                        <td>{{ item.fechaReproduccion}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-  </div>
-  <div class="container mt-4">
-    <!-- Descripción e Imagen -->
-    <div class="row mb-4">
-      <!-- Imagen -->
-      <div class="col-md-6">
-        <div class="image-container">
-          <img src="https://via.placeholder.com/800x600" class="img-fluid" alt="...">
-        </div>
-      </div>
-      <!-- Descripción -->
-      <div class="col-md-6">
-        <div class="description-container">
-          <h2>¿Sabias que...?</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Integer aliquet lacinia nulla, nec viverra orci fringilla id. Proin pulvinar, ligula eget hendrerit consequat, libero quam mattis velit, in ultricies velit lectus sit amet libero. Quisque auctor dui id mi faucibus, vel congue turpis eleifend. Integer nec eros at arcu tempus ullamcorper. Fusce ultrices velit eu dui tristique ultrices. Sed eleifend consequat enim. Integer ut mi sed orci ullamcorper volutpat. Aenean id metus hendrerit, dignissim enim sit amet, auctor mi.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="container mt-4">
-    <!-- Descripción e Imagen -->
-    <div class="row mb-4">
-      <!-- Descripción -->
-      <div class="col-md-6">
-        <div class="description-container">
-          <h2>¿Sabias que...?</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Integer aliquet lacinia nulla, nec viverra orci fringilla id. Proin pulvinar, ligula eget hendrerit consequat, libero quam mattis velit, in ultricies velit lectus sit amet libero. Quisque auctor dui id mi faucibus, vel congue turpis eleifend. Integer nec eros at arcu tempus ullamcorper. Fusce ultrices velit eu dui tristique ultrices. Sed eleifend consequat enim. Integer ut mi sed orci ullamcorper volutpat. Aenean id metus hendrerit, dignissim enim sit amet, auctor mi.</p>
-        </div>
-      </div>
-      <!-- Imagen -->
-      <div class="col-md-6">
-        <div class="image-container">
-          <img src="https://via.placeholder.com/800x600" class="img-fluid" alt="...">
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="container mt-4">
-    <!-- Descripción e Imagen -->
-    <div class="row mb-4">
-      <!-- Imagen -->
-      <div class="col-md-6">
-        <div class="image-container">
-          <img src="https://via.placeholder.com/800x600" class="img-fluid" alt="...">
-        </div>
-      </div>
-      <!-- Descripción -->
-      <div class="col-md-6">
-        <div class="description-container">
-          <h2>¿Sabias que...?</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Integer aliquet lacinia nulla, nec viverra orci fringilla id. Proin pulvinar, ligula eget hendrerit consequat, libero quam mattis velit, in ultricies velit lectus sit amet libero. Quisque auctor dui id mi faucibus, vel congue turpis eleifend. Integer nec eros at arcu tempus ullamcorper. Fusce ultrices velit eu dui tristique ultrices. Sed eleifend consequat enim. Integer ut mi sed orci ullamcorper volutpat. Aenean id metus hendrerit, dignissim enim sit amet, auctor mi.</p>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>

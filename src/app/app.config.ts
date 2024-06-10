@@ -3,12 +3,13 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
-import { provideHttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
 import {provideStorage, getStorage} from '@angular/fire/storage'
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { jwtInterceptor } from './Security/jwtInterceptor';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideClientHydration(), provideHttpClient(), importProvidersFrom([
+  providers: [provideRouter(routes), provideClientHydration() ,provideHttpClient(withInterceptorsFromDi()),{provide: HTTP_INTERCEPTORS, useClass: jwtInterceptor, multi: true} ,importProvidersFrom([
     provideFirebaseApp(()=> initializeApp({
       apiKey: "AIzaSyB2S73Hzoe9-RTP7lUcSAkC1kcw0yggUCo",
       authDomain: "storage-d2d10.firebaseapp.com",

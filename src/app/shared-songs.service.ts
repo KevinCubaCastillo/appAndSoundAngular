@@ -6,48 +6,58 @@ import { BehaviorSubject, Subject } from 'rxjs';
 })
 export class SharedSongsService {
   private _data : any;
+  private songQueue: any[] = [];
+  private currentIndex: number = 0;
+
   songPlay = new BehaviorSubject<any>(null);
   dataView = new BehaviorSubject<any>(null);
-  songsQueue = new BehaviorSubject<any[]>([]);
-  private currentSongIndex = new BehaviorSubject<number>(0);
-
-  getSongQueue = this.currentSongIndex.asObservable();
 
 
-  get datos(){
+
+  get datos() {
     return this._data;
   }
-  get getSong(){
+
+  get getSong() {
     return this.songPlay.asObservable();
-    }
-  get getData(){
+  }
+
+  get getData() {
     return this.dataView.asObservable();
   }
-  agregarDato(data : any){
+
+  agregarDato(data: any) {
     this._data = data;
   }
-  setSong(song : any){
-   this.songPlay.next(song);
-  } 
-  setSongs(songs: any[]): void {
-    this.songsQueue.next(songs);
-    this.currentSongIndex.next(0); // Start with the first song
+
+  setSong(song: any) {
+    this.songQueue = [song];
+    this.currentIndex = 0;
+    this.songPlay.next(this.songQueue[this.currentIndex]);
   }
-  setData (data: any){
+
+  setData(data: any) {
     this.dataView.next(data);
   }
-  nextSong(): void {
-    const currentIndex = this.currentSongIndex.value;
-    const newIndex = (currentIndex + 1) % this.songsQueue.value.length;
-    this.currentSongIndex.next(newIndex);
+  setSongQueue(queue: any[]) {
+    this.songQueue = queue;
+    if (queue.length > 0) {
+      this.currentIndex = 0;
+      this.songPlay.next(this.songQueue[this.currentIndex]);
+    }
   }
-  previousSong(): void {
-    const currentIndex = this.currentSongIndex.value;
-    const newIndex = (currentIndex - 1 + this.songsQueue.value.length) % this.songsQueue.value.length;
-    this.currentSongIndex.next(newIndex);
+  nextSong() {
+    if (this.songQueue.length > 0) {
+      this.currentIndex = (this.currentIndex + 1) % this.songQueue.length;
+      this.songPlay.next(this.songQueue[this.currentIndex]);
+    }
   }
-  getCurrentSong(): any {
-    return this.songsQueue.value[this.currentSongIndex.value];
+
+  previousSong() {
+    if (this.songQueue.length > 0) {
+      this.currentIndex = (this.currentIndex - 1 + this.songQueue.length) % this.songQueue.length;
+      this.songPlay.next(this.songQueue[this.currentIndex]);
+    }
   }
   constructor() { }
 }

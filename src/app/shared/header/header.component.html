@@ -23,20 +23,12 @@
             <li class="nav-item">
               <a class="nav-link" aria-current="page" routerLink="/Inicio-list">Inicio</a>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" routerLink="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Ingresar
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a ngIf="UserLoginOn" class="dropdown-item" routerLink="/Login-list">Iniciar sesion</a></li>
-                  <li><a ngIf="UserLoginOn" class="dropdown-item" routerLink="/perfil-list">Ver perfil</a></li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
-                </ul>
-              </li>
+
             <li class="nav-item">
-              <a class="nav-link" routerLink="/explorar-novedades-list">Explorar</a>
+              <a ngIf="UserLoginOn" class="nav-link" routerLink="/perfil-list">Ver perfil</a></li>
+
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/explorar-novedades-list">Andino Stats</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" routerLink="/Biblioteca-list">Tu biblioteca</a>

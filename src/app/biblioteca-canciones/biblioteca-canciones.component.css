@@ -3,6 +3,10 @@
   src: url('../../Media/Picashow.otf');
 }
 
+.table-container {
+  max-height: 400px;
+  overflow-y: auto;
+}
 .todo{
 font-family: 'fuente';
 }

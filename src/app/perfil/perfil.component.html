@@ -23,10 +23,22 @@
   <!-- Contenido del perfil -->
   <div class="container">
     <div class="row mt-4">
-      <div class="col-md-6 ">
+      <div class="col-md-4 ">
         <!-- Sección de listas de reproducción -->
         <h2>Listas de Reproducción</h2>
         <a routerLink="/playlist-list"><button class="btn btn-primary btn-lg btn-create-playlist">Crear Nueva Lista de Reproducción</button> </a> 
+        <div class="row mt-4">
+          <div class="col-md-6">
+            <a routerLink="/playlist-1">
+              <button class="btn btn-primary btn-lg btn-create-playlist" (click)="getPlaylists()">Ver Listas Activas</button>
+            </a>
+          </div>
+          <div class="col-md-6">
+            <a routerLink="/playlist-2">
+              <button class="btn btn-primary btn-lg btn-create-playlist" (click)="getPlaylistsInactive()">Ver Listas Archivadas</button>
+            </a>
+          </div>
+        </div>
         <!-- Lista de listas de reproducción -->
         <div class="table-container">
         <div class=" playlist " *ngFor= "let i of playlists">
@@ -34,23 +46,25 @@
             <img src="{{i.canciones[0].imagen}}" alt="Playlist">
             <div>
               <h3>{{i.nombre}}</h3>
+              <h5 >{{i.publico ? 'Publico' : 'Privado'}}</h5>
+              <h5 >{{i.estado ? 'Activo' : 'Archivado'}}</h5>
             </div>
             <div>
               <!-- Botones de editar y eliminar lista de reproducción -->
-              <button class="btn btn-sm btn-info btn-edit-playlist" (click)="setQueue(i)">Reproducir</button>
-              <button class="btn btn-sm btn-info btn-edit-playlist" (click)="data(i)">Ver</button>
-              <button class="btn btn-sm btn-info btn-edit-playlist">Editar</button>
-              <button class="btn btn-sm btn-danger btn-edit-playlist" (click)="disablePlaylist(i)">Archivar</button>
-              <button class="btn btn-sm btn-danger btn-delete-playlist" (click)="deletePlaylist(i)">Eliminar</button>
+              <button *ngIf="i.estado" class="btn btn-sm btn-info btn-edit-playlist" (click)="setQueue(i)">Reproducir</button>
+              <button *ngIf="i.estado" class="btn btn-sm btn-info btn-edit-playlist" (click)="data(i)">Editar</button>
+              <button *ngIf="i.estado" class="btn btn-sm btn-info btn-edit-playlist" (click)="public(i)" >{{i.publico ? 'Hacer privado' : 'Hacer publico'}}</button>
+              <button class="btn btn-sm btn-danger btn-edit-playlist" (click)="disablePlaylist(i)">{{i.estado ? 'Archivar' : 'Restaurar'}}</button>
+              <button *ngIf="!i.estado" class="btn btn-sm btn-danger btn-delete-playlist" (click)="deletePlaylist(i)">Eliminar</button>
             </div>
           </div>
         </div>
       </div>
       </div>
-      <div class="col-md-6" >
+      <div class="col-md-4" >
         <!-- Sección de canciones subidas o cargadas -->
         <h2>Canciones Subidas</h2>
-        <button class="btn btn-primary btn-lg btn-create-song">Subir Nueva Canción</button>
+        <button routerLink="/subir-contenido" class="btn btn-primary btn-lg btn-create-song">Subir Nueva Canción</button>
         <div class="row table-container" >
           <div class="col-md-6 " *ngFor="let x of songs">
             <!-- Canción 1 -->
@@ -62,7 +76,6 @@
                 <!-- Botones de editar y eliminar canción -->
                 <div>
                   <button class="btn btn-sm btn-info btn-edit-song" (click)="play(x)">Reproducir</button>
-                  <button class="btn btn-sm btn-danger btn-delete-song">Eliminar</button>
                 </div>
               </div>
             </div>
@@ -70,7 +83,69 @@
           
           <!-- Agrega más canciones aquí -->
         </div>
+        
+      </div>
+      <div class="col-md-4" >
+        <!-- Sección de canciones subidas o cargadas -->
+        <h2>Albumes Subidos</h2>
+        <button routerLink="/subir-contenido" class="btn btn-primary btn-lg btn-create-song">Subir Nueva Canción</button>
+        <div class="row table-container" >
+          <div class="col-md-6 " *ngFor="let x of albums">
+            <!-- Canción 1 -->
+            <div class="song-container" >
+              <div class="song">
+                <h3>{{x.nombre}}</h3>
+                <img src="{{x.portada}}" alt="Canción">
+                <p>{{x.autor}}</p>
+                <!-- Botones de editar y eliminar canción -->
+                <div>
+                  <button class="btn btn-sm btn-info btn-edit-song" (click)="setAlbumQueue(x)">Reproducir</button>
+                  <button class="btn btn-sm btn-info btn-edit-song" (click)="albumData(x)">Editar</button>
+                  <button class="btn btn-sm btn-danger btn-delete-song" (click)="deletealbum(x)">Eliminar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Agrega más canciones aquí -->
+        </div>
+        
       </div>
     </div>
+    <div class="row">
+      <div class="col-12 text-center">
+        <h1>LIKES</h1>
+      </div>
+      <div class="col-12 text-center">
+        <button class="btn btn-sm btn-info btn-edit-song" (click)="playAll()">Reproducir todo</button>
+      </div>
+      <div class="row">
+        <!-- Tabla de Álbumes 1 -->
+        <div class="col-md-12 bg-light table-container">
+          <h2 class="text-center mt-3">Canciones</h2>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Portada</th>
+                <th>Nombre</th>
+                <th>Álbum</th>
+                <th>Autor</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let i of likedSongs">
+                <td><img src="{{i.portada}}" alt="Album Thumbnail" style="width: 50px; height: 50px;"></td>
+                <td>{{i.nombre}}</td>
+                <td>{{i.album}}</td>
+                <td>{{i.autor}}</td>
+                <button class="btn btn-sm btn-info btn-edit-song" (click)="play(i)">Reproducir</button>
+                <button class="btn btn-sm btn-danger btn-edit-song" (click)="dislike(i)">Ya no me gusta</button>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+
   </div>
 </div>
