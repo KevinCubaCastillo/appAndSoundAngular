@@ -6,20 +6,59 @@ import { BehaviorSubject, Subject } from 'rxjs';
 })
 export class SharedSongsService {
   private _data : any;
-  songPlay = new BehaviorSubject<any>(null);
+  private songQueue: any[] = [];
+  private currentIndex: number = 0;
 
-  get datos(){
+  songPlay = new BehaviorSubject<any>(null);
+  dataView = new BehaviorSubject<any>(null);
+
+
+
+  get datos() {
     return this._data;
   }
-  get getSong(){
+
+  get getSong() {
     return this.songPlay.asObservable();
-    }
-  agregarDato(data : any){
+  }
+
+  get getData() {
+    return this.dataView.asObservable();
+  }
+
+  agregarDato(data: any) {
     this._data = data;
   }
-  setSong(song : any){
-   this.songPlay.next(song);
-  } 
+
+  setSong(song: any) {
+    this.songQueue = [song];
+    this.currentIndex = 0;
+    this.songPlay.next(this.songQueue[this.currentIndex]);
+  }
+
+  setData(data: any) {
+    this.dataView.next(data);
+  }
+  setSongQueue(queue: any[]) {
+    this.songQueue = queue;
+    if (queue.length > 0) {
+      this.currentIndex = 0;
+      this.songPlay.next(this.songQueue[this.currentIndex]);
+    }
+  }
+  nextSong() {
+    if (this.songQueue.length > 0) {
+      this.currentIndex = (this.currentIndex + 1) % this.songQueue.length;
+      this.songPlay.next(this.songQueue[this.currentIndex]);
+    }
+  }
+
+  previousSong() {
+    if (this.songQueue.length > 0) {
+      this.currentIndex = (this.currentIndex - 1 + this.songQueue.length) % this.songQueue.length;
+      this.songPlay.next(this.songQueue[this.currentIndex]);
+    }
+  }
   constructor() { }
 }
 

@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiCancionesService } from '../../services/api-canciones.service';
-import { Route, Router } from '@angular/router';
+import { Route, Router, RouterLink } from '@angular/router';
+import { ApiAuthService } from '../../services/api-auth.service';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 
@@ -15,19 +16,27 @@ nombre: string = '';
 fotoPerfil: string = '';
 UserLoginOn: boolean = false;
 user : any;
-constructor (private _apiService: ApiCancionesService, private _router : Router){
+profile: any;
+constructor (private _apiService: ApiCancionesService, private _apiAuth: ApiAuthService, private _router : Router){
 }
 ngOnInit(): void {
-  this.user = this._apiService.userData;
-  this.nombre = this._apiService.userData.nombrePerfil;
+  this.user = this._apiAuth.userData;
+  this.getProfile();
 if(this.user){
   this.UserLoginOn = true;
 }
-  this.fotoPerfil = this._apiService.userData.fotoPerfil;
 }
 logout(){
-  this._apiService.logout();
+  this._apiAuth.logout();
   this._router.navigate(['/Login-list'])
   window.location.reload();
+}
+getProfile(){
+  this._apiService.getProfileById(this._apiAuth.userData!.idPerfil).subscribe(x =>{
+    this.profile = x.data[0];
+    this.nombre = this.profile.nombrePerfil;
+    this.fotoPerfil = this.profile.fotoPerfil;
+    console.log(this.profile);
+  })
 }
 }

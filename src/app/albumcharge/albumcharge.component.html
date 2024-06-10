@@ -19,8 +19,8 @@
                 <input (change)= "onCoverSelected($event)" class="form-control" type="file" id="formFile">
               </div>
 
-            <button type="submit" class="btn btn-primary mt-3 crear" (click)= "addVenta()" [disabled]="!uploadCompleted">Crear Album</button>
-            <a href="/Biblioteca-list"><button class="btn btn-primary mt-3 cancelar">Cancelar</button></a>
+            <button class="btn btn-primary mt-3 crear" (click)= "addVenta()" [disabled]="!uploadCompleted">Crear Album</button>
+            <a><button routerLink="/perfil-list" class="btn btn-danger mt-3 cancelar">Cancelar</button></a>
           </form>
         </div>
         <!-- Mitad derecha con lista de canciones predefinidas -->

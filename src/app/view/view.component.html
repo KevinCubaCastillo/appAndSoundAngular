@@ -1,0 +1,108 @@
+  <body class="todo">
+    <div class="container mt-5">
+      <div class="row">
+        <!-- Mitad izquierda con el formulario -->
+        <div class="col-md-6">
+          <h1>Crear nueva Lista de reproducción</h1>
+          <!-- Formulario para crear una nueva playlist -->
+          <form id="playlistForm">
+            <div class="form-group">
+              <label for="playlistName">Nombre de la Playlist</label>
+              <input type="text" class="form-control" id="playlistName" name="playlistName" placeholder="Ingresa el nombre de la playlist" [(ngModel)]="nombre">
+              <button  class="btn btn-primary mt-3 crear" (click)="nameChange()">Cambiar nombre</button>
+            </div>
+            <br>
+            <div>
+              <h5>Canciones de la lista</h5>
+              <div class="table-container">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Imagen</th>
+                      <th scope="col">Nombre</th>
+                      <th scope="col">Artista</th>
+                      <th scope="col">Album</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="table-container" *ngFor= "let x of canciones">
+                      <td><img [src]="x.imagen" alt="Portada" style="width: 50px; height: 50px;"></td>
+                      <td>{{x.nombre}}</td>
+                      <td>{{x.artista}}</td>
+                      <td>{{x.album}}</td>
+                      <td><button class="btn btn-sm btn-danger btn-delete-playlist" (click)="deleteSong(x)">Eliminar</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div>
+              <h5>Canciones nuevas</h5>
+              <div class="table-container">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Imagen</th>
+                      <th scope="col">Nombre</th>
+                      <th scope="col">Artista</th>
+                      <th scope="col">Album</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor= "let x of nuevasCanciones">
+                      <td><img [src]="x.imagen" alt="Portada" style="width: 50px; height: 50px;"></td>
+                      <td>{{x.nombre}}</td>
+                      <td>{{x.artista}}</td>
+                      <td>{{x.album}}</td>
+                      <td><button class="btn btn-sm btn-danger btn-delete-playlist" (click)="quitarCancion(x)">Quitar</button>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <button  class="btn btn-primary mt-3 crear" (click)="addSongsPlayList()">Añadir Canciones</button>
+            <a><button routerLink="/perfil-list" class="btn btn-danger mt-3 cancelar">Cancelar</button></a>
+          </form>
+        </div>
+        <!-- Mitad derecha con lista de canciones predefinidas -->
+        <div class="col-md-6">
+          <h1>Añadir Canciones</h1>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Buscar canción" aria-label="Buscar canción" [(ngModel)]= "filtroCancion" (input)= "filtrarCanciones()" aria-describedby="button-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button" id="button-addon2">Buscar</button>
+            </div>
+          </div>
+          <div>
+            <h5>Canciones</h5>
+            <div class="table-container">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Imagen</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Artista</th>
+                    <th scope="col">Album</th>
+                    <th scope="col">Accion</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor= "let x of cancionesFiltradas">
+                    <td><img [src]="x.portada" alt="Portada" style="width: 50px; height: 50px;"></td>
+                    <td>{{x.nombre}}</td>
+                    <td>{{x.autor}}</td>
+                    <td>{{x.album}}</td>
+                    <td><button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="addCancion(x)">Añadir</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  

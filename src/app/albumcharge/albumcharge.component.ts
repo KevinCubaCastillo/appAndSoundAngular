@@ -8,12 +8,13 @@ import { Storage, StorageErrorCode, getDownloadURL, ref, uploadBytesResumable } 
 import { Observable } from 'rxjs';
 import { getHeapSnapshot } from 'v8';
 import { error } from 'console';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { ApiAuthService } from '../services/api-auth.service';
 
 @Component({
   selector: 'app-albumcharge',
   standalone: true,
-  imports: [FormsModule, NgFor, CommonModule],
+  imports: [FormsModule, NgFor, RouterLink],
   templateUrl: './albumcharge.component.html',
   styleUrl: './albumcharge.component.css'
 })
@@ -36,7 +37,8 @@ export class AlbumchargeComponent {
   constructor (
     private _formBuilder: FormBuilder,
     private _apiService : ApiCancionesService,
-    private _router : Router
+    private _router : Router,
+    private _apiAuth : ApiAuthService
   ){
     this.songs = [];
     this.album = {nombre: '', fechaLanzamiento: '', portada: '', cancionList: []}
@@ -50,7 +52,7 @@ export class AlbumchargeComponent {
       duracion: '3:50',
       url: this.url,
       fechaLanzamiento: this.date,
-      idUsuario: 1,
+      idUsuario: this._apiAuth.userData!.idUsuario,
       idAlbum: 1
     };
 
@@ -126,8 +128,7 @@ export class AlbumchargeComponent {
         if(x.success === true){
           alert(x.message);
           console.log("Registrado con exito");
-          this._router.navigate(['/Biblioteca-list'])
-          window.location.reload();
+          this._router.navigate(['/perfil-list'])
         }
       })
     }

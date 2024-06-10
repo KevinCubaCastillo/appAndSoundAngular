@@ -13,7 +13,27 @@
     margin-top: 1%;
     text-align: center;
   }
+  .custom-img {
+    max-width: 70%; /* Ajusta este valor según sea necesario */
+    height: auto;
+}
 
+.custom-icon {
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(100%) contrast(100%);
+}
+.table-img {
+  max-width: 50px; /* Ajusta este valor según sea necesario */
+  height: auto;
+}
+
+.carousel-item .d-flex {
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.carousel-item h1 {
+    margin-left: 20px; /* Ajusta el margen según sea necesario */
+}
   /* Estilo personalizado para las tarjetas */
   .card {
     border: none;

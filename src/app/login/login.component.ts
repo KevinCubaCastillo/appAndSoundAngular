@@ -5,6 +5,7 @@ import { usuario } from '../Models/usuario';
 import { Router } from '@angular/router';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { ApiAuthService } from '../services/api-auth.service';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -21,15 +22,16 @@ export class LoginComponent implements OnInit {
 
 constructor(
   private _apiusuario: ApiCancionesService,
+  private _apiAuth: ApiAuthService,
   private _router: Router
 ){
-
+  const user = this._apiAuth.userData;
+  if(user){
+    this._router.navigate(['/'])
+  }
 }
 ngOnInit(): void {
-    const user = this._apiusuario.userData;
-    if(user){
-      this._router.navigate(['/'])
-    }
+
 }
 addusuario(){
   if (!this.nombre || !this.correo || !this.contra) {
@@ -58,7 +60,7 @@ addusuario(){
 
 login(){
   const user: usuario = {nombre: '', correoElectronico: this.loginEmail, contrasenia: this.loginPassword}
-  this._apiusuario.login(user).subscribe(x =>{
+  this._apiAuth.login(user).subscribe(x =>{
     alert(x.message);
     this._router.navigate(['/'])
     window.location.reload();

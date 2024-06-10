@@ -9,7 +9,6 @@
           <div class="form-group">
             <label for="playlistName">Nombre de la Playlist</label>
             <input type="text" class="form-control" id="playlistName" name="playlistName" placeholder="Ingresa el nombre de la playlist" [(ngModel)]="nombre">
-            {{nombre}}
           </div>
           <br>
           <div class="form-group form-check">
@@ -26,6 +25,7 @@
                     <th scope="col">Nombre</th>
                     <th scope="col">Artista</th>
                     <th scope="col">Album</th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -34,13 +34,14 @@
                     <td>{{x.nombre}}</td>
                     <td>{{x.artista}}</td>
                     <td>{{x.album}}</td>
-                  </tr>
+                    <td><button class="btn btn-sm btn-danger btn-delete-playlist" (click)="quitarCancion(x)">Quitar</button>
+                    </tr>
                 </tbody>
               </table>
             </div>
           </div>
           <button  class="btn btn-primary mt-3 crear" (click)="addPlayList()">Crear Playlist</button>
-          <a href="/Biblioteca-list"><button class="btn btn-primary mt-3 cancelar">Cancelar</button></a>
+          <a><button routerLink="/perfil-list" class="btn btn-danger mt-3 cancelar">Cancelar</button></a>
         </form>
       </div>
       <!-- Mitad derecha con lista de canciones predefinidas -->
@@ -77,16 +78,6 @@
             </table>
           </div>
         </div>
-        <ul class="list-group">
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            Canción 1
-            <button type="button" class="btn  btn-outline-secondary">Seleccionar</button>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            Canción 2
-            <button type="button" class="btn  btn-outline-secondary">Seleccionar</button>
-          </li> 
-        </ul>
       </div>
     </div>
   </div>

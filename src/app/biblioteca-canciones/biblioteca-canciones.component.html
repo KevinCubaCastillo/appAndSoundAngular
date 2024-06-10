@@ -1,58 +1,92 @@
+
 <div class="container-fluid todo">
   <div class="row">
-    <!-- Lista de reproducción -->
-    <div class="col-md-4 bg-light">
-      <li class="playlist-item d-flex justify-content-between align-items-center">
-        <div>
-          <img style="width: 150px;"  src="https://cdn-icons-png.flaticon.com/512/4712/4712941.png" alt="" class="playlist-thumbnail">
-          <br>
-          <span class="ml-2" style="margin-left: 7%;">ME GUSTA</span>
-        </div>
-        <button class="play-btn" style="width: 70px; height: 70px;" (click)="mostrarMeGusta()" ></button>
-      </li>
-      <h2 class="text-center mt-3">Listas de albumes</h2>
-      <a href="/subir-contenido"><button class="btn btn-primary crear">Crear Nuevo album</button></a>
-      <a href="/playlist-list"><button class="btn btn-primary crear">Crear Nueva Lista de reproducción</button></a>
+    <div class="col-12 text-center">
+      <h1>BIBLIOTECA</h1>
+    </div>
+  </div>
+  <div class="row">
+    <!-- Tabla de Álbumes 1 -->
+    <div class="col-md-3 bg-light">
+      <h2 class="text-center mt-3">Albumes</h2>
       <input type="text" class="form-control mb-3" placeholder="Buscar Album..." [(ngModel)]="filtroAlbum" (input)="filtrarAlbumes()">
-      <div class="row">
-      <div class="playlist" *ngFor= "let i of albumesFiltrados" class="col-md-4 mb-4">
+      <div class="table-container">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Portada</th>
+            <th>Álbum</th>
+            <th>Fecha Lanzamiento</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let i of albumesFiltrados">
+            <td><img src="{{i.portada}}" alt="Album Thumbnail" style="width: 50px; height: 50px;" (click)="filtrarCancionesporBoton(i.album)"></td>
+            <td>{{i.album}}</td>
+            <td>{{i.fechaLanzamiento}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
 
-        <div class="card" class="playlist-item d-flex justify-content-between align-items-center"> 
-          <div class="card">
-            <img src="{{i.portada}}" alt="Playlist Thumbnail" class="card-img-top"(click)="filtrarCancionesporBoton(i.album)">
-            <br>
-            <span class="ml-3" style="margin-left: 7%;">{{i.album}}</span>
-          </div>
-        </div>
-   
-      </div>
+    <!-- Tabla de Álbumes 2 -->
+    <div class="col-md-3 bg-light">
+      <h2 class="text-center mt-3">Playlists</h2>
+      <input type="text" class="form-control mb-3" placeholder="Buscar Playlists..." [(ngModel)]="filtroplaylist" (input)="filtrarPlaylists()">
+      <div class="table-container">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Portada</th>
+            <th>Álbum</th>
+            <th>Cantidad canciones</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let i of playlistFiltrados">
+            <td><img src="{{i.canciones[0].imagen}}" alt="Album Thumbnail" style="width: 50px; height: 50px;" (click)="filtrarCancionesporBoton(i.album)"></td>
+            <td>{{i.nombre}}</td>
+            <td>{{i.canciones.length}}</td>
+            <td>              <button class="d play-btn" (click)="playSongQueue(i)"></button>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
     </div>
     </div>
-    <!-- Contenido -->
-    <div class="col-md-8">
-      <div class="content">
-        <h2>Canciones del album:{{nombreRep}}</h2>
-        <!-- Agrega el campo de entrada para buscar -->
-        <input type="text" class="form-control mb-3" placeholder="Buscar canción..." [(ngModel)] ="filtroCancion" (input) ="filtrarCanciones()">
-        <div class="row">
-          <div *ngFor="let x of cancionesFiltradas" class="col-md-4 mb-4">
-            <div class="card">
-              <img src="{{x.portada}}" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">{{x.nombre}}</h5>
-                <p class="card-text">Artista: {{x.autor}}</p>
-                <p class="card-text">Album: {{x.album}}</p>
-                <div class="botones">
-                  <button class="d play-btn" (click)="playSong(x)"></button>
-                  <button class="d like-btn"  (click)="addMeGusta(x)"></button>
-                  <button class="d delete-btn"></button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
+    <!-- Tabla de Canciones -->
+    <div class="col-md-6">
+      <h2 class="text-center mt-3">Lista de Canciones: {{nombreRep}}</h2>
+      <input type="text" class="form-control mb-3" placeholder="Buscar canción..." [(ngModel)]="filtroCancion" (input)="filtrarCanciones()">
+      <div class="table-container">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Portada</th>
+            <th>Nombre</th>
+            <th>Artista</th>
+            <th>Álbum</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let x of cancionesFiltradas">
+            <td><img src="{{x.portada}}" alt="Song Thumbnail" style="width: 50px; height: 50px;"></td>
+            <td>{{x.nombre}}</td>
+            <td>{{x.autor}}</td>
+            <td>{{x.album}}</td>
+            <td>
+              <button class="d play-btn" (click)="playSong(x)"></button>
+              <button class="d like-btn" (click)="addMeGusta(x)"></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     </div>
   </div>
 </div>
-
