@@ -24,12 +24,14 @@ export class MiniReproductorComponent {
   album: string = '';
   isRepeat: boolean = false;
   songImage: string = '';
+  songAutor: string = ''
 
   constructor (private _share: SharedSongsService, private _apiService: ApiCancionesService, private _apiAuth: ApiAuthService){
     this._share.getSong.subscribe({
       next: x => {
         this.song = x;
         this.songImage = this.getSongImage(x);
+        this.songAutor = this.getAutor(x);
         this.updateAudio();
       }
     });
@@ -79,6 +81,9 @@ export class MiniReproductorComponent {
   }
   getSongImage(song: any): string {
     return song.portada || song.imagen || '';
+  }
+  getAutor(song: any): string {
+    return song.autor || song.artista || '';
   }
   getSongId(song: any): number {
     return song.idCancion || song.id || 0;

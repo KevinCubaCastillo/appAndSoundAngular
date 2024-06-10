@@ -4,7 +4,7 @@
       <img [src]="songImage" alt="Portada" class="song-image mr-3">
       <div>
         <p class="song-title">{{ song.nombre }}</p>
-        <p class="song-artist">{{ song.autor }}</p>
+        <p class="song-artist">{{ songAutor }}</p>
       </div>
     </div>
     <p *ngIf="!song">No hay canción seleccionada</p>
