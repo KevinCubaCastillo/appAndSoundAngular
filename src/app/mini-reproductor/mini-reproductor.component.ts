@@ -4,6 +4,7 @@ import { NgFor, NgIf } from '@angular/common';
 import { stats } from '../Models/stats';
 import { ApiCancionesService } from '../services/api-canciones.service';
 import { ApiAuthService } from '../services/api-auth.service';
+import { userLogin } from '../Models/userLogin';
 
 @Component({
   selector: 'app-mini-reproductor',
@@ -25,7 +26,7 @@ export class MiniReproductorComponent {
   isRepeat: boolean = false;
   songImage: string = '';
   songAutor: string = ''
-
+  user!: userLogin | null;
   constructor (private _share: SharedSongsService, private _apiService: ApiCancionesService, private _apiAuth: ApiAuthService){
     this._share.getSong.subscribe({
       next: x => {
@@ -35,6 +36,15 @@ export class MiniReproductorComponent {
         this.updateAudio();
       }
     });
+    if (typeof localStorage !== 'undefined'){
+      this._apiAuth.usuarioObs.subscribe( i =>{
+        this.user = i;
+      })
+    }
+    else{
+      console.error('El objeto localStorage no está disponible en este contexto.');
+    }
+
   }
   toggleRepeat(): void {
     this.isRepeat = !this.isRepeat;

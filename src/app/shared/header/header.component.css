@@ -1,15 +1,82 @@
 @font-face {
     font-family: 'CustomFont';
     src: url('../../../Media/Musicografi.ttf');
-  }
-.logo{
+}
+
+.logo {
     align-content: center;
 }
-.buscador{
+
+.buscador {
     margin: 2%;
     width: 60%;
 }
-.nombre{
+
+.nombre {
     font-family: 'CustomFont';
     font-size: 40px;
+}
+
+.profile-img {
+    border-radius: 50%;
+    border: 5px solid #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1;
+    height: 150px;
+    width: 150px;
+}
+
+.profile-name {
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.navbar-nav .nav-item {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.navbar-nav .nav-link {
+    font-size: 18px;
+    cursor: pointer;
+    padding: 10px 15px;
+    text-align: center;
+    transition: background-color 0.3s, color 0.3s;
+    width: 100%; /* Make the link take the full width */
+    border-radius: 5px; /* Optional: add some border radius for better look */
+}
+
+.navbar-nav .nav-link:hover {
+    background-color: #637962; /* Change this to your desired hover background color */
+    color: #ffffff; /* Change this to your desired hover text color */
+}
+
+.navbar-nav .nav-link:active {
+    background-color: #637962; /* Change this to your desired active background color */
+    color: #ffffff; /* Change this to your desired active text color */
+}
+
+
+.offcanvas-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.offcanvas-title {
+    font-size: 30px;
+}
+
+.btn-close {
+    background: transparent;
+    border: none;
+}
+.offcanvas-body {
+    padding-left: 20px; /* Adjust the padding to reduce the width */
+    padding-right: 20px; /* Adjust the padding to reduce the width */
+}
+.offcanvas{
+    width: 320px;
 }

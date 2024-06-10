@@ -59,6 +59,12 @@ addusuario(){
 }
 
 login(){
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(this.loginEmail)) {
+    // Mostrar mensaje de alerta si el correo electrónico no tiene un formato válido
+    alert('Por favor, ingrese un correo electrónico válido.');
+    return;
+  }
   const user: usuario = {nombre: '', correoElectronico: this.loginEmail, contrasenia: this.loginPassword}
   this._apiAuth.login(user).subscribe(x =>{
     alert(x.message);

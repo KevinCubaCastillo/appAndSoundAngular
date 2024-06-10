@@ -54,6 +54,7 @@ async uploadCover (file: File){
   async () =>{
     alert('Se subio la foto de perfil');
     this.newPic = await getDownloadURL(fileRef);
+    this.updateProfile();
     console.log(this.newPic);
   }
   )
@@ -76,7 +77,6 @@ updateProfile(){
   this._apiService.updateProfile(this.idProfile, this.profile).subscribe(x =>{
     if(x.success === true){
       alert(x.message)
-      console.log(x)
       this.getProfile();
     }
   })

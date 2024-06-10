@@ -1,4 +1,4 @@
-<div class="mini-player fixed-bottom">
+<div *ngIf="user" class="mini-player fixed-bottom">
   <div class="player-container d-flex align-items-center justify-content-between">
     <div *ngIf="song" class="song-info d-flex align-items-center">
       <img [src]="songImage" alt="Portada" class="song-image mr-3">
@@ -25,28 +25,3 @@
   </div>
 </div>
 
-  <!-- Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script>
-    // Función para actualizar la posición del mini reproductor cuando la ventana se desplaza
-    $(document).ready(function() {
-      $(window).scroll(function() {
-        var scrollHeight = $(document).height();
-        var scrollPosition = $(window).height() + $(window).scrollTop();
-        var distanceFromBottom = scrollHeight - scrollPosition;
-
-        // Cambia la posición del mini reproductor para mantenerlo en la misma ubicación relativa a la parte inferior de la pantalla
-        if (distanceFromBottom < 150) {
-          $(".mini-player").css({
-            "bottom": (20 + (150 - distanceFromBottom)) + "px"
-          });
-        } else {
-          $(".mini-player").css({
-            "bottom": "20px"
-          });
-        }
-      });
-    });
-  </script>

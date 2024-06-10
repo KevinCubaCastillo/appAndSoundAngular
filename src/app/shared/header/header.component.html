@@ -1,48 +1,43 @@
-  <nav class="navbar bg-body-tertiary" aria-label="Light offcanvas navbar">
-    <div class="container-fluid">
-       
+<nav class="navbar bg-body-tertiary" aria-label="Light offcanvas navbar">
+  <div class="container-fluid">
       <a class="navbar-brand nombre" routerLink="/Inicio-list">AndinoSound</a>
 
       <button class="navbar-toggler" [disabled]="!UserLoginOn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarLight" aria-controls="offcanvasNavbarLight" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
       </button>
+
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbarLight" aria-labelledby="offcanvasNavbarLightLabel">
+          <div class="offcanvas-header col-12  text-center">
+              <h3 class="offcanvas-title nombre " id="offcanvasNavbarLightLabel">Andino Sound</h3>
+          </div>
 
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasNavbarLightLabel">{{nombre}}</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
+          <div class="offcanvas-body">
+              <div class="text-center">
+                  <img class="profile-img" src="{{fotoPerfil}}" alt="Profile Image">
+                  <p class="profile-name">{{nombre}}</p>
+              </div>
 
- 
-        <div class="offcanvas-body">
-            
-          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-            <div class="container text-center">
-                <img width="150px" src="{{fotoPerfil}}" alt="Logo">
-            </div>
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" routerLink="/Inicio-list">Inicio</a>
-            </li>
-
-            <li class="nav-item">
-              <a ngIf="UserLoginOn" class="nav-link" routerLink="/perfil-list">Ver perfil</a></li>
-
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/explorar-novedades-list">Andino Stats</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" routerLink="/Biblioteca-list">Tu biblioteca</a>
-            </li>
-            <li class="nav-item">
-                <a (click)="logout()" class="nav-link">Cerrar sesion</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" routerLink="/Inicio-list">Ayuda</a>
-            </li>
-           
-          </ul>
-      
-        </div>
+              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                  <li class="nav-item">
+                      <a class="nav-link" aria-current="page" routerLink="/Inicio-list">Inicio</a>
+                  </li>
+                  <li class="nav-item">
+                      <a ngIf="UserLoginOn" class="nav-link" routerLink="/perfil-list">Ver perfil</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" routerLink="/explorar-novedades-list">Andino Stats</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" routerLink="/Biblioteca-list">Tu biblioteca</a>
+                  </li>
+                  <li class="nav-item">
+                      <a (click)="logout()" class="nav-link">Cerrar sesion</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" routerLink="/Inicio-list">Ayuda</a>
+                  </li>
+              </ul>
+          </div>
       </div>
-    </div>
-  </nav>
+  </div>
+</nav>
